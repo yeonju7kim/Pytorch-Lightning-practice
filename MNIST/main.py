@@ -53,10 +53,19 @@ mnist_train, mnist_val = random_split(dataset, [55000, 5000])
 train_loader = DataLoader(mnist_train, batch_size=32)
 val_loader = DataLoader(mnist_val, batch_size=32)
 
-# model
-model = LitAutoEncoder()
+def train_from_scratch():
+    # model
+    model = LitAutoEncoder()
 
-# training
-trainer = pl.Trainer(gpus=1, num_nodes=1, precision=16, limit_train_batches=0.5)
-trainer.fit(model, train_loader, val_loader)
+    # training
+    trainer = pl.Trainer(gpus=1, num_nodes=1, precision=16, limit_train_batches=0.5)
+    trainer.fit(model, train_loader, val_loader)
 
+def train_from_checkpoint():
+    ckpt_path = 'lightning_logs/version_0/checkpoints/epoch=353-step=304086.ckpt'
+    model = LitAutoEncoder()
+    model.load_from_checkpoint(ckpt_path)
+    trainer = pl.Trainer(gpus=1, num_nodes=1, precision=16, limit_train_batches=0.5)
+    trainer.fit(model, train_loader, val_loader)
+
+train_from_checkpoint()
