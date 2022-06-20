@@ -4,13 +4,16 @@
 
 ## 학습 조건
 
+- 1080ti 1개
+- i7 4세대
+
 ``` python
 trainer = pl.Trainer(gpus=1, num_nodes=1, precision=16, limit_train_batches=0.5)
 ```
 
 ## 학습 결과
-|Epoch|train loss|test loss|
-|---|---|---|
+|Epoch|train loss|
+|---|---|
 |0|0.0462|
 |1|0.0438|
 |2|0.0425|
