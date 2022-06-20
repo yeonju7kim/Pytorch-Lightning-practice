@@ -1,7 +1,5 @@
 # Pytorch-Lightning-practice
 
-## MNIST 테스트
-
 ## 학습 조건
 
 - 1080ti 1개
